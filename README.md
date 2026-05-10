@@ -1,8 +1,20 @@
+<div align="center">
+
 # WeatherSnap 📸🌤️
 
-An Android application that lets users capture photos and automatically attach live weather data to each image, creating a geo-tagged weather snapshot saved locally.
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajdqaTlucGRnMmcxOTM1eTVkczVxdmozZm5yeWU1d280NncxYXUxaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Sm9AfJRiZofjlrkAAl/giphy.gif" width="320" alt="WeatherSnap demo"/>
+
+### An Android app that captures photos and automatically attaches real-time weather data to each image.
+### Search a city → fetch live weather via Open-Meteo (no API key) → snap a photo with CameraX → save a compressed weather report locally with Room.
+
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.2.10-7F52FF?style=flat&logo=kotlin)](https://kotlinlang.org)
+[![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-Material3-4285F4?style=flat&logo=android)](https://developer.android.com/jetpack/compose)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+</div>
 
 ---
+
 
 ## Tech Stack
 
