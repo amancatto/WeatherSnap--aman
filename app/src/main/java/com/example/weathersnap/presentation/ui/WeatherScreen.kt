@@ -68,7 +68,7 @@ fun WeatherScreen(
         ) {
             Spacer(Modifier.height(8.dp))
 
-            // ── Search Row ──────────────────────────────────────────────────
+            // Search Row
             ExposedDropdownMenuBox(
                 expanded = showSuggestions && suggestions.isNotEmpty(),
                 onExpandedChange = {}
@@ -134,7 +134,7 @@ fun WeatherScreen(
 
             Spacer(Modifier.height(24.dp))
 
-            // ── State Display ──────────────────────────────────────────────
+            //  State Display
             when (val state = uiState) {
                 WeatherUiState.Empty -> {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

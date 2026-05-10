@@ -66,7 +66,7 @@ fun CustomCameraScreen(
 
     Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
 
-        // ── Camera Preview ───────────────────────────────────────────────────
+        //  Camera Preview
         if (permissionGranted) {
             AndroidView(
                 factory = { previewView },
@@ -82,7 +82,7 @@ fun CustomCameraScreen(
             }
         }
 
-        // ── Close Button ─────────────────────────────────────────────────────
+        //  Close Button
         IconButton(
             onClick = onClose,
             modifier = Modifier
@@ -94,7 +94,7 @@ fun CustomCameraScreen(
             Icon(Icons.Default.Close, contentDescription = "Close", tint = Color.White)
         }
 
-        // ── Error Snackbar ───────────────────────────────────────────────────
+        // Error Snackbar
         errorMessage?.let { msg ->
             Card(
                 modifier = Modifier
@@ -107,7 +107,7 @@ fun CustomCameraScreen(
             }
         }
 
-        // ── Capture Button ───────────────────────────────────────────────────
+        // Capture Button
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)

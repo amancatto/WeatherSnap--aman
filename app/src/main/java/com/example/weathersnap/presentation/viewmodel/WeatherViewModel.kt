@@ -17,15 +17,15 @@ class WeatherViewModel @Inject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
-    // ─── Weather fetch state ──────────────────────────────────────────────────
+    // Weather fetch state
     private val _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Empty)
     val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
 
-    // ─── Autocomplete suggestions ─────────────────────────────────────────────
+    //Autocomplete suggestions
     private val _suggestions = MutableStateFlow<List<String>>(emptyList())
     val suggestions: StateFlow<List<String>> = _suggestions.asStateFlow()
 
-    // ─── In-memory LRU weather cache ─────────────────────────────────────────
+    // In-memory LRU weather cache
     private val weatherCache = object : LinkedHashMap<String, WeatherUiState.Success>(
         MAX_CACHE, 0.75f, true
     ) {
@@ -35,12 +35,12 @@ class WeatherViewModel @Inject constructor(
 
     private var suggestionJob: Job? = null
 
-    // ─── Autocomplete: debounced, min 2 chars ─────────────────────────────────
+    // autocomplete , min 2
     fun fetchSuggestions(query: String) {
         suggestionJob?.cancel()
         if (query.length < 2) { _suggestions.value = emptyList(); return }
         suggestionJob = viewModelScope.launch {
-            delay(300) // debounce
+            delay(300)
             repository.searchCitySuggestions(query)
                 .onSuccess { _suggestions.value = it }
                 .onFailure { _suggestions.value = emptyList() }
@@ -49,7 +49,7 @@ class WeatherViewModel @Inject constructor(
 
     fun clearSuggestions() { _suggestions.value = emptyList() }
 
-    // ─── Full weather fetch (with cache) ─────────────────────────────────────
+
     fun fetchWeather(cityName: String) {
         val key = cityName.trim().lowercase()
         if (key.isBlank()) { _uiState.value = WeatherUiState.Empty; return }
@@ -58,7 +58,6 @@ class WeatherViewModel @Inject constructor(
 
         viewModelScope.launch {
             _uiState.value = WeatherUiState.Loading
-            // Extract just the city part (before first comma) for the API call
             val apiQuery = cityName.substringBefore(",").trim()
             repository.getWeatherByCity(apiQuery)
                 .onSuccess { data ->

@@ -1,8 +1,8 @@
 package com.example.weathersnap.domain.model
 
 /**
- * Maps Open-Meteo WMO weather interpretation codes to human-readable condition strings.
- * Reference: https://open-meteo.com/en/docs#weathervariables
+ * Maps Open-Meteo WMO weather , it interpret code to human readeable string for easy read.
+ * Reference is at  https://open-meteo.com/en/docs#weathervariables
  */
 fun weatherCodeToCondition(code: Int): String = when (code) {
     0 -> "Clear Sky"

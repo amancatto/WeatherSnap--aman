@@ -34,7 +34,6 @@ fun WeatherSnapNavGraph() {
         route            = Routes.GRAPH_ROOT
     ) {
 
-        // ── Weather Search Screen ─────────────────────────────────────────────
         composable(Routes.WEATHER) { backStackEntry ->
             val parentEntry = remember(backStackEntry) {
                 navController.getBackStackEntry(Routes.GRAPH_ROOT)
@@ -48,7 +47,6 @@ fun WeatherSnapNavGraph() {
             )
         }
 
-        // ── Create Report Screen ──────────────────────────────────────────────
         composable(Routes.CREATE_REPORT) { backStackEntry ->
             val parentEntry = remember(backStackEntry) {
                 navController.getBackStackEntry(Routes.GRAPH_ROOT)
@@ -56,7 +54,6 @@ fun WeatherSnapNavGraph() {
             val weatherViewModel: WeatherViewModel = hiltViewModel(parentEntry)
             val reportViewModel: ReportViewModel   = hiltViewModel()
 
-            // Camera result arrives here via savedStateHandle after popBackStack()
             val capturedImagePath by backStackEntry.savedStateHandle
                 .getStateFlow("capturedImagePath", "")
                 .collectAsState()
@@ -75,11 +72,9 @@ fun WeatherSnapNavGraph() {
             }
         }
 
-        // ── CameraX Screen ────────────────────────────────────────────────────
         composable(Routes.CAMERA) {
             CustomCameraScreen(
                 onImageCaptured = { path ->
-                    // Pass image path back to CreateReportScreen via savedStateHandle
                     navController.previousBackStackEntry
                         ?.savedStateHandle
                         ?.set("capturedImagePath", path)
@@ -89,7 +84,6 @@ fun WeatherSnapNavGraph() {
             )
         }
 
-        // ── Saved Reports Screen ──────────────────────────────────────────────
         composable(Routes.SAVED_REPORTS) {
             val reportViewModel: ReportViewModel = hiltViewModel()
             SavedReportsScreen(

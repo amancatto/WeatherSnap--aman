@@ -3,7 +3,6 @@ package com.example.weathersnap.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 /**
- * Top-level response from Open-Meteo Geocoding API.
  * GET https://geocoding-api.open-meteo.com/v1/search
  */
 data class GeocodingResponse(

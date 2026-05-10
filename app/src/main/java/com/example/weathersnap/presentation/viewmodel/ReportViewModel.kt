@@ -14,31 +14,18 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * ViewModel for both the Create Report screen and the History (list) screen.
- *
- * Responsibilities:
- *  - Persists a [WeatherReportEntity] to Room via the IO dispatcher.
- *  - Exposes all saved reports as a hot [StateFlow] backed by Room's Flow.
- *  - Exposes [ReportSaveState] so the UI can react to save success/failure.
- */
 @HiltViewModel
 class ReportViewModel @Inject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
-    // ─── Save State ───────────────────────────────────────────────────────────
+    // Save State are here
 
     private val _saveState = MutableStateFlow<ReportSaveState>(ReportSaveState.Idle)
     val saveState: StateFlow<ReportSaveState> = _saveState.asStateFlow()
 
-    // ─── All Reports (reactive) ───────────────────────────────────────────────
+    //  Reports are here
 
-    /**
-     * Hot StateFlow of all saved reports, sourced from Room's Flow.
-     * Uses [SharingStarted.WhileSubscribed] with a 5-second timeout so the
-     * upstream DB query stays active during config changes.
-     */
     val allReports: StateFlow<List<WeatherReportEntity>> = repository
         .getAllReports()
         .stateIn(
@@ -47,12 +34,8 @@ class ReportViewModel @Inject constructor(
             initialValue = emptyList()
         )
 
-    // ─── Public API ───────────────────────────────────────────────────────────
+    //Public api
 
-    /**
-     * Saves [report] to Room on the IO dispatcher.
-     * Updates [saveState] so the UI can show a success/error indicator.
-     */
     fun saveReport(report: WeatherReportEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             _saveState.value = ReportSaveState.Saving
@@ -67,23 +50,17 @@ class ReportViewModel @Inject constructor(
         }
     }
 
-    /**
-     * Deletes a report by its UUID on the IO dispatcher.
-     */
     fun deleteReport(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteReport(id)
         }
     }
 
-    /**
-     * Resets save state to [ReportSaveState.Idle] after the UI has consumed the result.
-     */
     fun resetSaveState() {
         _saveState.value = ReportSaveState.Idle
     }
 
-    // ─── Constants ────────────────────────────────────────────────────────────
+    //  Constants
 
     companion object {
         private const val SUBSCRIPTION_TIMEOUT_MS = 5_000L

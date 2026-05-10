@@ -74,7 +74,7 @@ fun CreateReportScreen(
         ) {
             Spacer(Modifier.height(8.dp))
 
-            // ── Weather Summary Card ─────────────────────────────────────────
+            // Weather Summary Card
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
@@ -120,7 +120,7 @@ fun CreateReportScreen(
 
             Spacer(Modifier.height(20.dp))
 
-            // ── Photo Preview ────────────────────────────────────────────────
+            //  Photo Preview
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -165,7 +165,7 @@ fun CreateReportScreen(
 
             Spacer(Modifier.height(20.dp))
 
-            // ── Field Notes ──────────────────────────────────────────────────
+            // Field Notes
             OutlinedTextField(
                 value = notes,
                 onValueChange = { notes = it },
@@ -188,7 +188,7 @@ fun CreateReportScreen(
 
             Spacer(Modifier.height(24.dp))
 
-            // ── Save Button ──────────────────────────────────────────────────
+            // Save Button
             val isSaving = saveState is ReportSaveState.Saving
             Button(
                 onClick = {

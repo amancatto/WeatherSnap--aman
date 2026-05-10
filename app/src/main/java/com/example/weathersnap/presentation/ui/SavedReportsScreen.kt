@@ -102,7 +102,7 @@ private fun ReportCard(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
         Column {
-            // ── Image ──────────────────────────────────────────────────────────
+            //  Image
             if (report.imagePath.isNotBlank()) {
                 AsyncImage(
                     model = report.imagePath,
@@ -116,7 +116,7 @@ private fun ReportCard(
             }
 
             Column(modifier = Modifier.padding(16.dp)) {
-                // ── Header row ───────────────────────────────────────────────
+                //  Header row
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -145,7 +145,7 @@ private fun ReportCard(
 
                 Spacer(Modifier.height(10.dp))
 
-                // ── Weather stats row ─────────────────────────────────────────
+                //  Weather stats row
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -157,7 +157,7 @@ private fun ReportCard(
 
                 HorizontalDivider(modifier = Modifier.padding(vertical = 10.dp), color = MaterialTheme.colorScheme.outline)
 
-                // ── Image size comparison ─────────────────────────────────────
+                //  Image size comparison
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -173,7 +173,7 @@ private fun ReportCard(
                     }
                 }
 
-                // ── Notes ─────────────────────────────────────────────────────
+                //  Notes
                 if (report.notes.isNotBlank()) {
                     Spacer(Modifier.height(10.dp))
                     Text(
@@ -186,7 +186,7 @@ private fun ReportCard(
 
                 Spacer(Modifier.height(10.dp))
 
-                // ── Timestamp + Delete ────────────────────────────────────────
+                //  Timestamp + Delete
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,

@@ -22,7 +22,6 @@ class WeatherRepositoryImpl @Inject constructor(
         private const val FORECAST_URL =
             "https://api.open-meteo.com/v1/forecast"
 
-        /** Comma-separated current weather variables requested from Open-Meteo */
         private const val CURRENT_PARAMS =
             "temperature_2m,relative_humidity_2m,wind_speed_10m,surface_pressure,weather_code"
     }

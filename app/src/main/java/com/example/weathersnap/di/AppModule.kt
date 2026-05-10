@@ -22,9 +22,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    // ─────────────────────────────────────────────
     // Network
-    // ─────────────────────────────────────────────
 
     @Provides
     @Singleton
@@ -41,7 +39,7 @@ object AppModule {
             .build()
 
     /**
-     * Base URL is a placeholder — actual URLs are supplied via @Url in [WeatherApiService].
+     * Base URL is a placeholderhere, the  actual urls are supplied via @Url in [WeatherApiService].
      * This enables calling two different Open-Meteo domains from a single Retrofit instance.
      */
     @Provides
@@ -58,9 +56,7 @@ object AppModule {
     fun provideWeatherApiService(retrofit: Retrofit): WeatherApiService =
         retrofit.create(WeatherApiService::class.java)
 
-    // ─────────────────────────────────────────────
     // Database
-    // ─────────────────────────────────────────────
 
     @Provides
     @Singleton
@@ -76,9 +72,7 @@ object AppModule {
     fun provideReportDao(database: WeatherDatabase): ReportDao =
         database.reportDao()
 
-    // ─────────────────────────────────────────────
     // Repository
-    // ─────────────────────────────────────────────
 
     @Provides
     @Singleton

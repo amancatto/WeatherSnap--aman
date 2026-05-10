@@ -3,7 +3,6 @@ package com.example.weathersnap.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 /**
- * Top-level response from Open-Meteo Forecast API.
  * GET https://api.open-meteo.com/v1/forecast
  */
 data class ForecastResponse(
